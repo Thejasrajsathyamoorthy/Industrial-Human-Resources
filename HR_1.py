@@ -7,7 +7,7 @@ import seaborn as sns
 import plotly.express as px
 
 
-eda_df = pd.read_csv("EDA_df.csv")
+nlp_df = pd.read_csv("NLP_df.csv")
 
 
 # Visualisation
@@ -23,6 +23,7 @@ def plot_top_industries(df, group_col, value_col, top_n, title, color ):
     ax.set_ylabel("Industry")
     ax.invert_yaxis()
     st.pyplot(w_p_fig)
+
 
 
 def plot_workers_distribution(data):
@@ -58,7 +59,6 @@ def plot_rural_urban_distribution(df,  title="Rural & Urban Workers Distribution
 
 
 
-
 def plot_men_women_distribution(df,  title="Men & Women Workers Distribution"):
     
     columns_to_plot = [
@@ -80,11 +80,6 @@ def plot_men_women_distribution(df,  title="Men & Women Workers Distribution"):
 
 
 
-
-
-
-
-
 # Streamlit Part
 
 st.set_page_config(page_title="Industrial Human Resources Geo-visualization", page_icon=":bar_chart:", layout="wide")
@@ -97,36 +92,18 @@ with st.sidebar:
 
 if select == "Home":
     pass
-    # col1,col2 = st.columns([10,5])
-    # with col1:
-    #     st.markdown("### :red[**_Airbnb, Inc._**] is an American company operating an online marketplace for short and long-term homestays and experiences in various countries and regions. Airbnb full form is :orange[_**'Air Bed and Breakfast**'_], The company acts as a broker and charges a commission from each booking. Airbnb was founded in August 2008. It is the most well-known company for short-term housing rentals.")
     
-    # with col2:
-    #     st.image("C:/Users/Theju/Desktop/Guvi Capstone Projects/Airbnb Analysis/Airbnb_Logo.png", width=450)
-
-    # col1, col2 = st.columns([14,8])
-    # with col1:
-    #     st.write("\n")
-    #     st.markdown("#### :blue[_Problem Statement_ :] This project aims to analyze Airbnb data perform data cleaning and preparation, develop interactive geospatial visualizations, and create dynamic plots to gain insights into pricing variations, availability patterns, and location-based trends.")
-    #     st.markdown("#### :blue[_Skills take away_ :] Python scripting, Data Pre-processing, Visualization, EDA, Streamlit, PowerBI or Tableau.")
-    #     st.markdown("#### :blue[_Domain_:] Travel Industry, Property Management and Tourism")
-
-    # # with col3:
-    # st.write("\n")
-    # st.markdown("### :red[**_Outcome_ :**] In this Project, after performing Pre-processing and EDA in sample datas it comes out as clean data. With these datas usefull insights are collected and visualizaion process done.")
-
-
 elif select == "Analysis":
     
     # Distribution based on Industry group and State 
     col1, col2 = st.columns(2)
     with col1:
-        industry = st.selectbox("Select Industry", eda_df['industry_group'].unique())
+        industry = st.selectbox("Select Industry", nlp_df['industry_group'].unique())
     
     with col2:
-        state = st.selectbox("Select State", eda_df['state_code'].unique())
+        state = st.selectbox("Select State", nlp_df['state_code'].unique())
     
-    filtered_data = eda_df[(eda_df['industry_group'] == industry) & (eda_df['state_code'] == state)]
+    filtered_data = nlp_df[(nlp_df['industry_group'] == industry) & (nlp_df['state_code'] == state)]
 
 
     # Distribution based on District 
@@ -170,10 +147,10 @@ elif select == "Visualization":
     col1,col2 = st.columns(2)
     with col1:
         st.write("Top Industries by Main Worker Population")
-        plot_top_industries(eda_df, 'nic_name', 'main_workers_total_persons', 20, "Top Industries by Main Worker Population", 'purple')
+        plot_top_industries(nlp_df, 'nic_name', 'main_workers_total_persons', 20, "Top Industries by Main Worker Population", 'purple')
     with col2:
         st.write("Top Industries by Marginal Worker Population")
-        plot_top_industries(eda_df, 'nic_name', 'marginal_workers_total_persons', 20, "Top Industries by Marginal Worker Population", 'blue')
+        plot_top_industries(nlp_df, 'nic_name', 'marginal_workers_total_persons', 20, "Top Industries by Marginal Worker Population", 'blue')
     
     st.write("")
     st.write("")
@@ -181,16 +158,16 @@ elif select == "Visualization":
     col1,col2 = st.columns(2)
     with col1:
         st.write("Top Industries by Total Worker Population")
-        plot_top_industries(eda_df, 'nic_name', 'total_workers', 20, "Top Industries by Total Worker Population", 'red')
+        plot_top_industries(nlp_df, 'nic_name', 'total_workers', 20, "Top Industries by Total Worker Population", 'red')
     with col2:
         st.write("Workers Distribution by States")
-        plot_workers_distribution(eda_df)
+        plot_workers_distribution(nlp_df)
 
     col1,col2 = st.columns(2)
     with col1:
         st.write("Rural & Urban Workers Distribution")
-        plot_rural_urban_distribution(eda_df)
+        plot_rural_urban_distribution(nlp_df)
     with col2:
         st.write("Men & Women Workers Distribution")
-        plot_men_women_distribution(eda_df)
+        plot_men_women_distribution(nlp_df)
 
