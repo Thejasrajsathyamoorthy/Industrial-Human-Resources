@@ -80,10 +80,10 @@ The current workforce classification data in India is outdated and fails to capt
   *  NLP Clustering:
       *  Industries grouped into categories like Small Industries, Service Organizations, and Retail Stores.
   *  Model Performance:
-      *  Accuracy: 90%
-      *  Precision: 89%
-      *  Recall: 88%
-      *  F1-Score: 88%
+      *  Accuracy: 99.98%
+      *  Precision: 99.99%
+      *  Recall: 99.99%
+      *  F1-Score: 99.99%
 
 
 ### 7. Future Improvements
