@@ -5,9 +5,26 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import seaborn as sns
 import plotly.express as px
+import joblib
 
+I_HR_model = joblib.load("Industrial_Human_Resouces.pkl")
 
 nlp_df = pd.read_csv("NLP_df.csv")
+eda_df = pd.read_csv("EDA_df.csv")
+
+
+# Prediction of Industry Groups
+
+def preprocess_input(state_code, district_code, division, group, class_):
+    # Replace with your mapping logic if required
+    return pd.DataFrame({
+        "state_code": [state_code],
+        "district_code": [district_code],
+        "division": [division],
+        "group": [group],
+        "class": [class_]
+    })
+
 
 
 # Visualisation
@@ -88,63 +105,114 @@ st.title(":bar_chart:  Industrial Human Resouces Geo-visualization")
 st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html= True)
 
 with st.sidebar:
-    select = option_menu("Main menu", ["Home","Analysis", "Visualization"])
+    select = option_menu("Main menu", ["Home","Data Exploration", "Visualization"])
 
 if select == "Home":
     pass
+
+
     
-elif select == "Analysis":
+elif select == "Data Exploration":
+    tab1, tab2 = st.tabs(['Prediction', 'Analysis'])
     
-    # Distribution based on Industry group and State 
-    col1, col2 = st.columns(2)
-    with col1:
-        industry = st.selectbox("Select Industry", nlp_df['industry_group'].unique())
-    
-    with col2:
-        state = st.selectbox("Select State", nlp_df['state_code'].unique())
-    
-    filtered_data = nlp_df[(nlp_df['industry_group'] == industry) & (nlp_df['state_code'] == state)]
+    with tab1:
+        st.header("Predict Industry Group")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            state_code = st.selectbox("Select State", nlp_df['state_code'].unique())
+        with col2:
+            district_code = st.selectbox("Select District", nlp_df['district_code'].unique())
+        with col3:
+            division = st.selectbox("Select Division", nlp_df['division'].unique())
+        with col1:
+            group = st.selectbox("Select Group", nlp_df['group'].unique())
+        with col2:
+            class_ = st.selectbox("Select Class", nlp_df['class'].unique())
+
+            st.write("")
+            if st.button("Predict Industry Group"):
+                input_data = preprocess_input(state_code, district_code, division, group, class_)
+                prediction = I_HR_model.predict(input_data)[0]
+
+                st.write(f"Predicted Industry Group: {prediction}")
+
+                st.sidebar.header("Industry Group Names")
+                st.sidebar.write("0 - Non Agricultural activities")
+                st.sidebar.write("1 - Heavy Industries")
+                st.sidebar.write("2 - Govrnment service sector")
+                st.sidebar.write("3 - Small Industries")
+                st.sidebar.write("4 - Retail stores")
+                st.sidebar.write("5 - Service Organizations")
+                st.sidebar.write("6 - Wholesale stores")
 
 
-    # Distribution based on District 
-    col1, col2 = st.columns(2)
-    with col1:
-        district = st.selectbox("Select District", filtered_data['district_code'].unique())
-    
-    district_data = filtered_data[filtered_data['district_code'] == district]
+    with tab2:
+        # Distribution based on Industry group and State 
+        col1, col2, = st.columns(2)
+        with col1:
+            industry = st.selectbox("Select Industry,", nlp_df['industry_group'].unique())
+        
+        with col2:
+            state = st.selectbox("Select State,", nlp_df['state_code'].unique())
+        
+        filtered_data = nlp_df[(nlp_df['industry_group'] == industry) & (nlp_df['state_code'] == state)]
 
 
-    # Distribution based on Division 
-    with col2:
-        division = st.selectbox("Select Division", district_data['division'].unique())
-    
-    division_data = district_data[district_data['division'] == division]
+        col1, col2 = st.columns(2)
+        with col1:
+            district = st.selectbox("Select District,", filtered_data['district_code'].unique())
+        
+        district_data = filtered_data[filtered_data['district_code'] == district]
 
 
-    # Distribution based on Group 
-    col1, col2 = st.columns(2)
-    with col1:
-        group = st.selectbox("Select Group", division_data['group'].unique())
-    
-    group_data = division_data[division_data['group'] == group]
+        with col2:
+            division = st.selectbox("Select Division,", district_data['division'].unique())
+        
+        division_data = district_data[district_data['division'] == division]
 
 
-    # Distribution based on Class 
-    with col2:
-        class_details = st.selectbox("Select Class", group_data['class'].unique())
-    
-    class_data = group_data[group_data['class'] == class_details]
+        col1, col2 = st.columns(2)
+        with col1:
+            group = st.selectbox("Select Group,", division_data['group'].unique())
+        
+        group_data = division_data[division_data['group'] == group]
 
 
-    # Visualization of Analysis
-    st.write(f"Workers in {industry}")
-    fig = px.bar(class_data, x='total_workers', y='industry_group', title="Worker Distribution")
-    st.plotly_chart(fig)
+        with col2:
+            class_details = st.selectbox("Select Class,", group_data['class'].unique())
+        
+        class_data = group_data[group_data['class'] == class_details]
+
+        
+        st.write("")
+        st.write(f"Workers in {industry}")
+
+        # Visualization of Total Workers Analysis
+
+        total_fig = px.bar(class_data, x='total_workers', y='industry_group',
+                            title="Total Workers Distribution")
+        st.plotly_chart(total_fig)
+
+        # Visualization of Male Workers Analysis
+
+        col1, col2 = st.columns(2)
+        with col1:
+            males_fig = px.bar(class_data, x='total_male_workers', y='industry_group', 
+                               title="Total Male Workers Distribution")
+            st.plotly_chart(males_fig)
+
+        # Visualization of Female Workers Analysis
+
+        with col2:
+            females_fig = px.bar(class_data, x='total_female_workers', y='industry_group',
+                                  title="Total Female Workers Distribution")
+            st.plotly_chart(females_fig)
 
 
 
 elif select == "Visualization":
-    col1,col2 = st.columns(2)
+    col1, col2 = st.columns(2)
     with col1:
         st.write("Top Industries by Main Worker Population")
         plot_top_industries(nlp_df, 'nic_name', 'main_workers_total_persons', 20, "Top Industries by Main Worker Population", 'purple')
@@ -155,10 +223,11 @@ elif select == "Visualization":
     st.write("")
     st.write("")
 
-    col1,col2 = st.columns(2)
+    col1, col2 = st.columns(2)
     with col1:
         st.write("Top Industries by Total Worker Population")
         plot_top_industries(nlp_df, 'nic_name', 'total_workers', 20, "Top Industries by Total Worker Population", 'red')
+    
     with col2:
         st.write("Workers Distribution by States")
         plot_workers_distribution(nlp_df)
