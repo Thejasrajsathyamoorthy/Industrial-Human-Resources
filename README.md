@@ -1,8 +1,8 @@
-## Industrial Human Resource Geo-Visualization
-### Project Overview
+## 📊 Industrial Human Resource Geo-Visualization
+### 🎯  Project Overview
 This project analyzes the workforce distribution across various industries in India, using state-wise data on main and marginal workers classified by industry, sex, and geography. The project aims to provide accurate insights for policy-making and employment planning through exploratory data analysis, natural language processing, machine learning, and an interactive dashboard.
 
-### Table of Contents
+### 📄 Table of Contents
 1. Problem Statement
 2. Dataset Overview
 3. Technologies Used
@@ -26,7 +26,9 @@ The current workforce classification data in India is outdated and fails to capt
 
 ### 3. Technologies Used
   *  #### Data Manipulation and Analysis: 
-      * pandas, numpy
+      * ![Alt text]('Pandas_logo.svg.png'), ![Alt text]('NumPy_logo_2020.svg.png')
+
+
   *  #### Visualization:
       *  matplotlib, seaborn, plotly.express
   *  #### NLP: 
