@@ -127,6 +127,7 @@ if select == "Intro":
         with col2:
             st.image("Matplotlib.png")
             st.image("Scikit-learn.png")
+            st.image("Seaborn.png")
 
     st.markdown("#### :blue[_Outcome_:]") 
     st.markdown("#### In this project, the population of workers for each state and its districts is analysed to provide relevant and accurate data for policy making and employment planning. Based on their work, they were catogorised based on their work nature into 7 groups using NLP, And then trained model for future usage on predicting their industry w.r.t their work nature.")
