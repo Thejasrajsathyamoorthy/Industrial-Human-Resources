@@ -10,6 +10,7 @@ This project analyzes the workforce distribution across various industries in In
 5. Key Features
 6. Results
 7. Future Improvements
+8. Screenshots of Project
 
 ### 1. 📨 Problem Statement
 The current workforce classification data in India is outdated and fails to capture the latest trends. This study aims to:
@@ -85,6 +86,15 @@ The current workforce classification data in India is outdated and fails to capt
   *  Include real-time workforce updates.
   *  Extend industry classification with deep learning techniques.
   *  Integrate advanced geospatial visualizations.
+
+
+### 8. 📷 Screenshots of Project
+
+1. ![Screenshot (101)](https://github.com/user-attachments/assets/2311d1da-0e26-4ae2-a967-b1422f9eff00)
+2. ![Screenshot (100)](https://github.com/user-attachments/assets/ef4a74f5-32e9-4877-9e78-f3c6a4c5314c)
+3. ![Screenshot (99)](https://github.com/user-attachments/assets/df382c34-6a92-4d03-8989-5a184661e017)
+4. ![Screenshot (94)](https://github.com/user-attachments/assets/aa08f2ea-f6e6-434f-a7ae-454930d69490)
+5. ![Screenshot (98)](https://github.com/user-attachments/assets/7e3dd152-c2fc-407a-9acb-9f8dae6cec86)
 
 
 # Contributor -  Thejas Raj A S
