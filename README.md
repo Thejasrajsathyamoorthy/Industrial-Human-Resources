@@ -26,7 +26,7 @@ The current workforce classification data in India is outdated and fails to capt
 
 ### 3. Technologies Used
   *  #### Data Manipulation and Analysis: 
-      * pandas, [numpy](https://github.com/Thejasrajsathyamoorthy/Industrial-Human-Resources/blob/main/NumPy_logo_2020.svg.png)
+      * pandas, numpy
   *  #### Visualization:
       *  matplotlib, seaborn, plotly.express
   *  #### NLP: 
