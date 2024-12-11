@@ -46,7 +46,7 @@ The current workforce classification data in India is outdated and fails to capt
 
 #### Natural Language Processing (NLP):
   * Clustered industries using TfidfVectorizer and KMeans.
-  * Categorized industries into groups like Manufacturing, Organizational works, Health sector, Education & Administration Works, and Construction works.
+  * Categorized industries into groups like Heavy Industries, Organizational works, Health sector, Education, etc,.
 
 #### Machine Learning:
   * Built a RandomForestClassifier to predict industry groups based on features like state, district, division, group, and class.
@@ -71,9 +71,9 @@ The current workforce classification data in India is outdated and fails to capt
 
 ### 6. ✅ Results
   *  State-wise Workforce Distribution:
-      *  Maharashtra and Rajasthan have the highest worker populations.
+      *  West Bengal and Rajasthan have the highest worker populations.
   *  NLP Clustering:
-      *  Industries grouped into categories like Manufacturing, Organizational works, Health sector, Education & Administration Works, and Construction works.
+      *  Industries grouped into categories like Heavy Industries, Organizational works, Health sector, Education, etc,.
   *  Model Performance:
       *  Accuracy: 99.99%
       *  Precision: 99.99%
