@@ -87,7 +87,7 @@ st.title(":bar_chart:  Industrial Human Resouces Geo-visualization")
 st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html= True)
 
 with st.sidebar:
-    select = option_menu("Main menu", ["Intro","Data Exploration", "Visualization"])
+    select = option_menu("Main menu", ["Intro","Data Analysis", "Visualization"])
 
 if select == "Intro":
 
@@ -117,7 +117,7 @@ if select == "Intro":
     st.markdown("#### In this project, the population of workers for each state and its districts is analysed to provide relevant and accurate data through visualization for policy making and employment planning. Based on their work, they were catogorised into 7 groups using NLP, And then ML model is trained for future usage on predicting their industry based on their division, group, and class.")
     
     
-elif select == "Data Exploration":
+elif select == "Data Analysis":
     
     st.header("Analysis of workers population")
 
@@ -165,87 +165,90 @@ elif select == "Data Exploration":
     
     class_data = group_data[group_data['class'] == class_details]
 
-    if not class_data.empty:
+    if st.button('Get Details'):
+
         st.write("")
 
-        st.subheader(f"Workers Population of '{industry}' sector")
+        if not class_data.empty:
+
+            st.subheader(f"Workers Population of '{industry}' sector")
 
 
-        # Visualization of Total Workers Analysis
+            # Visualization of Total Workers Analysis
 
-        total_fig = px.bar(class_data, x='total_workers', y='industry_group',
-                            title="Total Workers", color_discrete_sequence=['#A9A9A9'])
-        st.plotly_chart(total_fig)
-
-
-        # Visualization of Main/Marginal Workers Analysis
-
-        col1, col2, col3 = st.columns([8,2,8])
-
-        with col1:
-        
-            total_main_workers_fig = px.bar(class_data, x='industry_group', y='main_workers_total_persons',
-                                color_discrete_sequence=['#FFD1DC'], title="Total Main Workers")
-            st.plotly_chart(total_main_workers_fig)
-
-        with col3:
-                
-            total_marginal_workers_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_persons',
-                                color_discrete_sequence=['#FFDAB9'], title="Total Marginal Workers")
-            st.plotly_chart(total_marginal_workers_fig)
+            total_fig = px.bar(class_data, x='total_workers', y='industry_group',
+                                title="Total Workers", color_discrete_sequence=['#A9A9A9'])
+            st.plotly_chart(total_fig)
 
 
-        # Visualization of Rural/Urban Workers Analysis
+            # Visualization of Main/Marginal Workers Analysis
 
-        col1, col2, col3, col4, col5, col6, col7 = st.columns([5,1,5,1,5,1,5])
+            col1, col2, col3 = st.columns([8,2,8])
 
-        with col1:
-            main_rural_fig = px.bar(class_data, x='industry_group', y='main_workers_rural_persons', 
-                                title="Rural Main Workers", color_discrete_sequence=['#77DD77'])
-            st.plotly_chart(main_rural_fig)
+            with col1:
+            
+                total_main_workers_fig = px.bar(class_data, x='industry_group', y='main_workers_total_persons',
+                                    color_discrete_sequence=['#FFD1DC'], title="Total Main Workers")
+                st.plotly_chart(total_main_workers_fig)
 
-        with col3:
-            main_urban_fig = px.bar(class_data, x='industry_group', y='main_workers_urban_persons',
-                                    title="Urban Main Workers", color_discrete_sequence=['#F5F5DC'])
-            st.plotly_chart(main_urban_fig)
-
-        with col5:
-            marginal_rural_fig = px.bar(class_data, x='industry_group', y='marginal_workers_rural_persons', 
-                                title="Rural Marginal Workers", color_discrete_sequence=['#77DD77'])
-            st.plotly_chart(marginal_rural_fig)
-
-        with col7:
-            marginal_urban_fig = px.bar(class_data, x='industry_group', y='marginal_workers_urban_persons',
-                                    title="Urban Marginal Workers", color_discrete_sequence=['#F5F5DC'])
-            st.plotly_chart(marginal_urban_fig)
+            with col3:
+                    
+                total_marginal_workers_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_persons',
+                                    color_discrete_sequence=['#FFDAB9'], title="Total Marginal Workers")
+                st.plotly_chart(total_marginal_workers_fig)
 
 
-        # Visualization of Males/Females Workers Analysis
-        
+            # Visualization of Rural/Urban Workers Analysis
 
-        col1, col2, col3, col4, col5, col6, col7 = st.columns([5,1,5,1,5,1,5])
+            col1, col2, col3, col4, col5, col6, col7 = st.columns([5,1,5,1,5,1,5])
 
-        with col1:
-            main_males_fig = px.bar(class_data, x='industry_group', y='main_workers_total_males', 
-                            title="Male Main Workers", color_discrete_sequence=['#1E90FF'])
-            st.plotly_chart(main_males_fig)
+            with col1:
+                main_rural_fig = px.bar(class_data, x='industry_group', y='main_workers_rural_persons', 
+                                    title="Rural Main Workers", color_discrete_sequence=['#77DD77'])
+                st.plotly_chart(main_rural_fig)
 
-        with col3:
-            main_females_fig = px.bar(class_data, x='industry_group', y='main_workers_total_females',
-                                title="Female Main Workers", color_discrete_sequence=['#FF00FF'])
-            st.plotly_chart(main_females_fig)
-        
-        with col5:
-            marginal_males_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_males', 
-                            title="Male Marginal Workers", color_discrete_sequence=['#1E90FF'])
-            st.plotly_chart(marginal_males_fig)
+            with col3:
+                main_urban_fig = px.bar(class_data, x='industry_group', y='main_workers_urban_persons',
+                                        title="Urban Main Workers", color_discrete_sequence=['#F5F5DC'])
+                st.plotly_chart(main_urban_fig)
 
-        with col7:
-            marginal_females_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_females',
-                                title="Female Marginal Workers", color_discrete_sequence=['#FF00FF'])
-            st.plotly_chart(marginal_females_fig)
-    else:
-        st.write("")
+            with col5:
+                marginal_rural_fig = px.bar(class_data, x='industry_group', y='marginal_workers_rural_persons', 
+                                    title="Rural Marginal Workers", color_discrete_sequence=['#77DD77'])
+                st.plotly_chart(marginal_rural_fig)
+
+            with col7:
+                marginal_urban_fig = px.bar(class_data, x='industry_group', y='marginal_workers_urban_persons',
+                                        title="Urban Marginal Workers", color_discrete_sequence=['#F5F5DC'])
+                st.plotly_chart(marginal_urban_fig)
+
+
+            # Visualization of Males/Females Workers Analysis
+            
+
+            col1, col2, col3, col4, col5, col6, col7 = st.columns([5,1,5,1,5,1,5])
+
+            with col1:
+                main_males_fig = px.bar(class_data, x='industry_group', y='main_workers_total_males', 
+                                title="Male Main Workers", color_discrete_sequence=['#1E90FF'])
+                st.plotly_chart(main_males_fig)
+
+            with col3:
+                main_females_fig = px.bar(class_data, x='industry_group', y='main_workers_total_females',
+                                    title="Female Main Workers", color_discrete_sequence=['#FF00FF'])
+                st.plotly_chart(main_females_fig)
+            
+            with col5:
+                marginal_males_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_males', 
+                                title="Male Marginal Workers", color_discrete_sequence=['#1E90FF'])
+                st.plotly_chart(marginal_males_fig)
+
+            with col7:
+                marginal_females_fig = px.bar(class_data, x='industry_group', y='marginal_workers_total_females',
+                                    title="Female Marginal Workers", color_discrete_sequence=['#FF00FF'])
+                st.plotly_chart(marginal_females_fig)
+        else:
+            st.error("Fill all Details")
 
 
 elif select == "Visualization":
@@ -277,11 +280,13 @@ elif select == "Visualization":
     elif not state_data.empty:
 
         if  district_data.empty:
-        
+            
+            st.sidebar.info("Select District for district-wise visualization")
+
             st.write("")
             st.write("")
 
-            st.header(f"Visualization of Workers Distribution in '{state}'")
+            st.header(f"Visualization of Workers Distribution -> '{state}'")
 
             st.write("")
             st.write("")
@@ -321,7 +326,7 @@ elif select == "Visualization":
             st.write("")
             st.write("")
 
-            st.header(f"Visualization of Workers Distribution in '{district}'")
+            st.header(f"Visualization of Workers Distribution -> '{district}'")
 
             st.write("")
             st.write("")
