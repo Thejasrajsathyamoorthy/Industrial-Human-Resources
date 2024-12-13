@@ -29,12 +29,8 @@ The current workforce classification data in India is outdated and fails to capt
       *  matplotlib, seaborn, plotly.express
   *  #### NLP: 
       *  sklearn (TfidfVectorizer, KMeans)
-  *  #### Machine Learning:
-      *  RandomForestClassifier
   *  #### Dashboard Development:
       *  Streamlit, Plotly
-  *  #### Deployment:
-      *  joblib
 
 ### 4. 📈 Approach
 #### Data Preparation:
@@ -47,10 +43,7 @@ The current workforce classification data in India is outdated and fails to capt
 
 #### Natural Language Processing (NLP):
   * Clustered industries using TfidfVectorizer and KMeans.
-  * Categorized industries into groups like Heavy Industries, Organizational works, Health sector, Education, etc,.
-
-#### Machine Learning:
-  * Built a RandomForestClassifier to predict industry groups based on features like state, district, division, group, and class.
+  * Categorized industries into groups like Automobile Industries, Developmental works, Manufacturing, etc,.
 
 #### Visualization Dashboard:
   * Created an interactive dashboard with Streamlit to visualize workforce data by geography and industry.
@@ -62,9 +55,6 @@ The current workforce classification data in India is outdated and fails to capt
         
   *  #### NLP Insights:
       *  Grouped industries into five meaningful clusters for better understanding.
-        
-  *  #### Machine Learning Model:
-      *  Random Forest Classifier with 99% accuracy for predicting industry groups.
 
   *  #### Interactive Dashboard:
       *  Visualize data dynamically across states and industries.
@@ -75,12 +65,6 @@ The current workforce classification data in India is outdated and fails to capt
       *  West Bengal and Rajasthan have the highest worker populations.
   *  NLP Clustering:
       *  Industries grouped into categories like Heavy Industries, Organizational works, Health sector, Education, etc,.
-  *  Model Performance:
-      *  Accuracy: 99.99%
-      *  Precision: 99.99%
-      *  Recall: 99.99%
-      *  F1-Score: 99.99%
-
 
 ### 7. 🚀 Future Improvements
   *  Include real-time workforce updates.
@@ -88,13 +72,11 @@ The current workforce classification data in India is outdated and fails to capt
   *  Integrate advanced geospatial visualizations.
 
 
-### 8. 📷 Screenshots of Project
+### 8. 📷 Video of Project
 
-1. ![Screenshot (101)](https://github.com/user-attachments/assets/2311d1da-0e26-4ae2-a967-b1422f9eff00)
-2. ![Screenshot (100)](https://github.com/user-attachments/assets/ef4a74f5-32e9-4877-9e78-f3c6a4c5314c)
-3. ![Screenshot (99)](https://github.com/user-attachments/assets/df382c34-6a92-4d03-8989-5a184661e017)
-4. ![Screenshot (94)](https://github.com/user-attachments/assets/aa08f2ea-f6e6-434f-a7ae-454930d69490)
-5. ![Screenshot (98)](https://github.com/user-attachments/assets/7e3dd152-c2fc-407a-9acb-9f8dae6cec86)
+https://github.com/user-attachments/assets/5d1665de-6d0a-48c8-a428-7602ffcbadb4
+
+
 
 
 # Contributor -  Thejas Raj A S
